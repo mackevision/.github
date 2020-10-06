@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: User Story
+    about: Create an issue for a new user-story.
+  - name: Bug
+    url: Create an issue for a bug-report.

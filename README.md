@@ -1,4 +1,4 @@
-This repository contains workflow templates that can be used organization wide.
+This repository contains workflow and issue templates that can be used organization wide.
 
 # ATTENTION
 To make it work, the repository has to have PUBLIC visibility. So please be careful when committing templates to this repository. 
