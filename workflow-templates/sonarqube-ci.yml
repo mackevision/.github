@@ -1,0 +1,37 @@
+name: code-analysis
+
+on:
+  push:
+    branches:
+      - $default-branch
+  pull_request:
+    branches:
+      - $default-branch
+
+jobs:
+  sonarscan:
+    runs-on: sonar-runner
+    env:
+      repo_name: $(basename ${{ github.repository }})
+
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v2
+
+      - name: Setup sonar scanner
+        uses: warchant/setup-sonar-scanner@v1
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Run scan and push report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          sonar-scanner
+          -Dsonar.projectKey=MV_${{ env.repo_name }}
+          -Dsonar.sources=.
+          -Dsonar.host.url=${{ secrets.SONARQUBE_URL }}
+          -Dsonar.login=${{ secrets.SONARQUBE_CI_USER_TOKEN }}

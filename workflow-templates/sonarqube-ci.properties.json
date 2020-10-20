@@ -1,0 +1,5 @@
+{
+    "name": "SonarQube Workflow",
+    "description": "Template workflow for running code analysis with SonarQube.",
+    "iconName": "sonarqube-icon"
+}
