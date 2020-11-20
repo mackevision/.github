@@ -19,12 +19,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup sonar scanner
-        uses: warchant/setup-sonar-scanner@v1
+        uses: warchant/setup-sonar-scanner@v3
 
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
 
       - name: Run scan and push report
         env:
