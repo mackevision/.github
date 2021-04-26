@@ -10,7 +10,7 @@ on:
 
 jobs:
   sonarscan:
-    runs-on: sonar-runner
+    runs-on: ubuntu-18.04
     env:
       repo_name: $(basename ${{ github.repository }})
 
