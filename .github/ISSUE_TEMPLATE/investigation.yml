@@ -1,5 +1,5 @@
 name: Investigation
-description: File a bug report
+description: File a investigation
 title: "[Investigation]: "
 labels: ["investigation"]
 body:
