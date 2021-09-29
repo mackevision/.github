@@ -1,6 +1,6 @@
-name: Bug Report
+name: Investigation
 description: File a bug report
-title: " "
+title: "[Investigation]: "
 labels: ["investigation"]
 body:
   - type: markdown
