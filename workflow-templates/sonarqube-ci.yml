@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: code-analysis
 
 on:
@@ -10,28 +11,18 @@ on:
 
 jobs:
   sonarscan:
-    runs-on: ubuntu-18.04
-    env:
-      repo_name: $(basename ${{ github.repository }})
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout current repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Setup sonar scanner
-        uses: warchant/setup-sonar-scanner@v3
-
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14
-
-      - name: Run scan and push report
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run:
-          sonar-scanner
-          -Dsonar.projectKey=MV_${{ env.repo_name }}
-          -Dsonar.sources=.
-          -Dsonar.host.url=${{ secrets.SONARQUBE_URL }}
-          -Dsonar.login=${{ secrets.SONARQUBE_CI_USER_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_CI_USER_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=MV_${{ github.event.repository.name }}
+            -Dsonar.sources=.
